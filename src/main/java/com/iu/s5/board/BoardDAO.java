@@ -15,7 +15,7 @@ public interface BoardDAO {
 	//생략해도 자동으로 만들어짐
 	
 	//count
-	public long boardCount()throws Exception;
+	public long boardCount(Pager pager)throws Exception;
 		
 	//List
 	public List<BoardDTO> boardList(Pager pager) throws Exception;//여기까지가 추상메서드

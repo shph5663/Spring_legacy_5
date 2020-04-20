@@ -29,6 +29,7 @@ public class Pager {
 	public void makePage(long totalCount) {
 		//1. totalCount : 전체 글의 갯수
 		
+		
 		//2. totalCount로 totalPage 계산
 		this.totalPage = totalCount/this.getPerPage();
 		if(totalCount % this.getPerPage() != 0) {

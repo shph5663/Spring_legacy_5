@@ -4,10 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.s5.notice.NoticeDAO">
-  	
+  	<sql id="search">
+  		like '%'||#{search}||'%'
+  	</sql>
   	<!-- 전체 글의 갯수 -->
-  	<select id="boardCount" resultType="java.lang.Long">
+  	<select id="boardCount" parameterType="com.iu.s5.board.page.Pager" resultType="java.lang.Long">
   		select count(num) from notice
+  		<where>
+  			<if test="kind == 'bt'">
+  				title <include refid="search"></include>
+  			</if>
+  			
+  			<if test="kind == 'bw'">
+  				writer <include refid="search"></include>
+  			</if>
+  			
+  			<if test="kind == 'bc'">
+  				contents <include refid="search"></include>
+  			</if>
+  		</where>
+  		
   	</select>
   
   	<select id="boardList" parameterType="com.iu.s5.board.page.Pager" resultType="com.iu.s5.notice.NoticeDTO">
