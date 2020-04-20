@@ -3,6 +3,7 @@ package com.iu.s5.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardDAO;
 import com.iu.s5.board.BoardDTO;
+import com.iu.s5.board.page.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
@@ -19,15 +21,19 @@ public class NoticeDAO implements BoardDAO {
 	private final String NAMESPACE="com.iu.s5.notice.NoticeDAO";
 	
 	@Override
-	public List<BoardDTO> boardList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoardDTO> boardList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".boardList", pager);
 	}
-
+	
 	@Override
-	public BoardDTO boardSelect() throws Exception {
+	public long boardCount() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".boardCount");
+	}
+	
+	@Override
+	public BoardDTO boardSelect(long num) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAMESPACE+".boardSelect", num);
 	}
 
 	@Override
@@ -44,6 +50,11 @@ public class NoticeDAO implements BoardDAO {
 	public int boardUpdate(BoardDTO boardDTO) throws Exception{
 		
 		return sqlSession.update(NAMESPACE+".boardUpdate", boardDTO);
+	}
+	
+	@Override
+	public int hitUpdate(long num) throws Exception {
+		return sqlSession.update(NAMESPACE+".hitUpdate",num);
 	}
 
 }
