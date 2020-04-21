@@ -1,4 +1,4 @@
-package com.iu.s5.board.page;
+package com.iu.s5.util;
 
 import javax.xml.crypto.KeySelector.Purpose;
 

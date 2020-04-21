@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.iu.s5.board.page.Pager;
+import com.iu.s5.util.Pager;
 
 public interface BoardDAO {
 	//멤버변수 상수

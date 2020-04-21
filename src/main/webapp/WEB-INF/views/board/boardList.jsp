@@ -43,7 +43,14 @@
 			<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.num}</td>
-				<td><a href="./${board}Select?num=${dto.num}">${dto.title}</a></td>
+				<td>
+				<c:catch>
+				<c:forEach begin="1" end="${dto.depth}">
+					-->
+					<!-- &nbsp;&nbsp; -->
+				</c:forEach>
+				</c:catch>
+				<a href="./${board}Select?num=${dto.num}">${dto.title}</a></td>
 				<td>${dto.writer}</td>
 				<td>${dto.regdate}</td>
 				<td>${dto.hit}</td>			
@@ -61,14 +68,47 @@
 			</c:forEach>
 			<c:if test="${pager.totalBlock>pager.curBlock}"><li><a href="./${board}List?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 			</c:if>
-		</div>
 			</ul>
-
-
-	
 		</div>
-			<a href="./${board}Write" class="btn btn-danger">write</a>
-		</div>
+		
+		<c:catch>
+		<c:choose>
+			<c:when test="${board eq 'notice'}">
+			<c:if test="${member.id eq 'admin'}">
+				<div>
+					<a href="./${board}Write" class="btn btn-danger">write</a>
+				</div>	
+			</c:if>
+			</c:when>
+			<c:otherwise>
+			<c:if test="${not empty member}">
+				<div>
+					<a href="./${board}Write" class="btn btn-danger">write</a>
+				</div>	
+			</c:if>
+			</c:otherwise>
+		</c:choose>
+		</c:catch>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

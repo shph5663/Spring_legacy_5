@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.s5.member.MemberDAO;
 import com.iu.s5.member.MemberVO;
-import com.iu.s5.member.memberPage.Pager;
+import com.iu.s5.util.Pager;
 
 @Repository
 public class MemberDAO {
@@ -37,6 +37,7 @@ public class MemberDAO {
 	public MemberVO memberLogin(MemberVO memberVO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+".memberLogin", memberVO);
 	}
+	
 	
 	public int memberJoin(MemberVO memberVO) throws Exception{
 		return sqlSession.insert(NAMESPACE+".memberJoin", memberVO);

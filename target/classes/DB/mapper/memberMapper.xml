@@ -9,7 +9,7 @@
   		like '%'||#{search}||'%'
   	</sql>
   	
-  	<select id="memberCount" parameterType="com.iu.s5.member.memberPage.Pager" resultType="java.lang.Long">
+  	<select id="memberCount" parameterType="Pager" resultType="Long">
   		select count(id) from member
   <where>
   			<if test="kind == 'id'">
@@ -32,7 +32,7 @@
   	</select>
   	
   	
-  	<select id="memberList" parameterType="com.iu.s5.member.memberPage.Pager" resultType="com.iu.s5.member.MemberVO">
+  	<select id="memberList" parameterType="Pager" resultType="MemberVO">
   	select * from(select N.*, rownum R from(select * from member where 
 	<choose>
 		<when test="kind=='id'">
@@ -54,20 +54,20 @@
   	
   	
  
-<update parameterType="com.iu.s5.member.MemberVO" id="memberUpdate">
+<update parameterType="MemberVO" id="memberUpdate">
 Update member set email=#{email},phone=#{phone},age=#{age} where id=#{id} 
 </update>
 
 
-<delete parameterType="java.lang.Long" id="memberDelete">
+<delete parameterType="Long" id="memberDelete">
 delete member where id=#{id} 
 </delete>
 
-<insert parameterType="com.iu.s5.member.MemberVO" id="memberJoin">
+<insert parameterType="MemberVO" id="memberJoin">
 insert into member values(#{id},#{pw},#{name},#{email},#{phone},#{age}) 
 </insert>
 
-<select parameterType="java.lang.Long" id="memberLogin" resultType="com.iu.s5.member.MemberVO">
+<select parameterType="Long" id="memberLogin" resultType="MemberVO">
 select * from member where id=#{id} and pw=#{pw} 
 </select>
 
