@@ -58,9 +58,9 @@
 				</div>		
 				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="age">Avatar:</label>
+					<label class="control-label col-sm-2" for="avatar">Avatar:</label>
 					<div class="col-sm-10">
-						<input type="file" class="form-control" id="avatar" placeholder="Enter Age" name="avatar">
+						<input type="file" class="form-control" id="avatar" placeholder="Enter Avatar" name="avatar">
 					</div>
 				</div>			
 						

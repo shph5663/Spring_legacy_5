@@ -67,7 +67,7 @@ delete member where id=#{id}
 insert into member values(#{id},#{pw},#{name},#{email},#{phone},#{age}) 
 </insert>
 
-<select parameterType="Long" id="memberLogin" resultType="MemberVO">
+<select parameterType="MemberVO" id="memberLogin" resultType="MemberVO">
 select * from member where id=#{id} and pw=#{pw} 
 </select>
 

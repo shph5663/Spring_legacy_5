@@ -34,7 +34,6 @@ public class QnaController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		return mv;
-		
 	}
 	
 	
@@ -59,13 +58,13 @@ public class QnaController {
 		
 		return mv;
 	}
+	
 	@GetMapping("qnaSelect")
 	public ModelAndView boardSelect(long num, ModelAndView mv) throws Exception{
 		BoardDTO boardDTO = qnaService.boardSelect(num);
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/boardSelect");
 		return mv;
-		
 	}
 	
 	@GetMapping("qnaReply")
@@ -74,7 +73,6 @@ public class QnaController {
 		mv.setViewName("board/boardReply");
 		return mv;
 	}
-	
 	
 	@PostMapping("qnaReply")
 	public ModelAndView boardReply(ModelAndView mv, QnaVO qnaVO)throws Exception{
@@ -87,7 +85,6 @@ public class QnaController {
 			
 			mv.setViewName("common/result");
 		}
-		
 		return mv;
 	}
 }
