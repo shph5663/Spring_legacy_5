@@ -21,7 +21,7 @@
 		<h1>Age : ${member.age}</h1>
 		<h1>
 		<div><a href="./fileDelete">FileDelete</a></div>
-		<img alt="" src="../resources/memberUpload/${file.fileName}"> </h1>
+		<img alt="" src="../resources/memberUpload/${member.memberFileVO.fileName}"> </h1>
 		<ima alt="" src="">
 		
 		<button class="btn btn-primary" id="update">Update</button>
