@@ -104,9 +104,9 @@ public class MemberController {
 	
 	@RequestMapping(value= "memberPage")
 	public void memberPage(HttpSession session, Model model)throws Exception {
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		MemberFileVO memberFileVO= memberService.fileSelect(memberVO.getId());
-		model.addAttribute("file", memberFileVO);
+//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+//		MemberFileVO memberFileVO= memberService.fileSelect(memberVO.getId());
+//		model.addAttribute("file", memberFileVO);
 	}
 	
 	@RequestMapping(value= "fileDelete")//a태그니까 get

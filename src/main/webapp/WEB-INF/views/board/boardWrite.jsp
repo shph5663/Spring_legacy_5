@@ -14,7 +14,7 @@
 
 <h1>${board} Write form</h1>
 
-<form action="./${board}Write" method="post">
+<form action="./${board}Write" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">title:</label>
 					<div class="col-sm-10">
@@ -36,6 +36,15 @@
 		    			<textarea rows="5" cols="" class="form-control" id="contents" name="contents"></textarea>
 		  		</div> 
 				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="files">File:</label>
+					<div class="col-sm-10">
+						<input type="file" class="form-control" name="files">
+						<input type="file" class="form-control" name="files">
+					</div>
+				</div>
+
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
