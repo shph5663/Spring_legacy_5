@@ -50,7 +50,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public int boardWrite(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		System.out.println(files);
-		String path = servletContext.getRealPath("/resource/uploadNotice");
+		String path = servletContext.getRealPath("/resources/uploadnotice");
 		System.out.println(path);
 		//sequence 번호 받기
 		boardDTO.setNum(noticeDAO.boardNum());

@@ -62,7 +62,7 @@
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
+    <!-- Wrapper for slides 
     <div class="carousel-inner">
       <div class="item active">
         <img src="${pageContext.request.contextPath}/resources/images/la.jpg" alt="Los Angeles" style="width:100%;">
@@ -75,7 +75,7 @@
       <div class="item">
         <img src="${pageContext.request.contextPath}/resources/images/ny.jpg" alt="New york" style="width:100%;">
       </div>
-    </div>
+    </div>-->
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">

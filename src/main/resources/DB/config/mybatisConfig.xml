@@ -7,11 +7,13 @@
   	<typeAliases>
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="com.iu.s5.notice.NoticeDTO" alias="NoticeDTO"/>
+  		<typeAlias type="com.iu.s5.board.BoardDTO" alias="BoardDTO"/>
   		<typeAlias type="com.iu.s5.member.MemberVO" alias="MemberVO"/>
   		<typeAlias type="com.iu.s5.qna.QnaVO" alias="QnaVO"/>
   		<typeAlias type="com.iu.s5.util.Pager" alias="Pager"/>
   		<typeAlias type="com.iu.s5.member.memberFile.MemberFileVO" alias="MemberFileVO"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="com.iu.s5.board.file.BoardFileVO" alias="BoardFileVO"/>
+  		<typeAlias type="java.util.List" alias="List"/>
   	</typeAliases>
   </configuration>

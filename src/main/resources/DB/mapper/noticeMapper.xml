@@ -4,6 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.s5.notice.NoticeDAO">
+  
+  	<resultMap type="NoticeDTO" id="selectResult">
+  		<id column="num" property="num"/>
+  		<result column="title" property="title"/>
+  		<result column="writer" property="writer"/>
+  		<result column="contents" property="contents"/>
+  		<result column="regdate" property="regdate"/>
+  		<result column="hit" property="hit"/>
+  	<collection property="boardFileVOs" javaType="List" ofType="boardFileVO">
+  		<id column="fileNum" property="fileNum"/>
+  		<result column="fileName" property="fileName"/>
+  		<result column="oriName" property="oriName"/>
+  		<result column="board" property="board"/>
+  	</collection>
+  	</resultMap>
+  
   	<sql id="search">
   		like '%'||#{search}||'%'
   	</sql>
@@ -43,8 +59,11 @@
   	
   	</select>
   	
-  	<select id="boardSelect" parameterType="Long" resultType="NoticeDTO">
-	select*from notice where num=#{num}  
+  	<select id="boardSelect" parameterType="Long" resultMap="selectResult">
+	select N.*,f.*
+	from notice N left join boardfile F
+	on (N.num=F.num)
+	where N.num=#{num} and F.board=1 
   	</select>
   	
   	<select id="boardNum" resultType="Long">

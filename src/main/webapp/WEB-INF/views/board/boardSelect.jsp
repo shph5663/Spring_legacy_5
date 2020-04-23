@@ -14,8 +14,17 @@
 <div class="row">
 	<h1>    title : ${dto.title}</h1>
 	<h1>    writer : ${dto.writer}</h1>
-	<h1>    contents : ${dto.contents}</h1>
+	<h1>    contents : ${dto.contents}</h1>    
+
 </div>
+
+	<div>
+		<c:forEach items="${dto.boardFileVOs}" var="file">
+			<div>
+				<a href="../boardFile/fileDown?fileNum=${file.fileNum}&board=${file.board}">${file.oriName}</a>
+			</div>
+		</c:forEach>
+	</div>
 
 <div>
 	<a href="./${board}Update?num=${dto.num}" class="btn btn-primary">Update</a>
