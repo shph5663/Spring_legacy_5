@@ -42,6 +42,10 @@ public class MemberDAO {
 	public int memberJoin(MemberVO memberVO) throws Exception{
 		return sqlSession.insert(NAMESPACE+".memberJoin", memberVO);
 	}
+	
+	public MemberVO memberIdCheck(MemberVO memberVO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+".memberIdCheck", memberVO);
+	}
 
 	
 

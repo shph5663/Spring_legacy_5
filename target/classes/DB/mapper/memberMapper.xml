@@ -88,4 +88,8 @@ on (M.id=F.id)
 where M.id=#{id} and M.pw=#{pw}
 </select>
 
+<select id="memberIdCheck" parameterType="MemberVO" resultType="MemberVO">
+	select id from member where id=#{id}
+</select>
+
 </mapper>

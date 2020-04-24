@@ -8,13 +8,13 @@
   	<sql id="search">
   		where 
   			<choose>
+  				<when test="kind == 'bc'">
+  					contents
+  				</when>
   				<when test="kind == 'bt'">
   					title
   				</when>
-  				<when test="kind == 'bw'">
-  					writer
-  				</when>
-  				<otherwise>contents</otherwise>
+  				<otherwise>writer</otherwise>
   			</choose>
   			like '%'||#{search}||'%'
   	</sql>

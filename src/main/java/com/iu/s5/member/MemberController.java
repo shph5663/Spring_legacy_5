@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.member.memberFile.MemberFileVO;
+import com.iu.s5.memo.MemoVO;
 import com.iu.s5.util.Pager;
 
 @Controller
@@ -44,9 +46,6 @@ public class MemberController {
 	
 	@RequestMapping(value= "memberJoin", method = RequestMethod.POST)
 	public ModelAndView memberJoin(MemberVO memberVO, ModelAndView mv,HttpSession session ,MultipartFile avatar) throws Exception {
-		
-		
-		
 		int result = memberService.memberJoin(memberVO, avatar, session);
 		String msg ="Member Join Fail";
 		if(result>0) {
@@ -114,6 +113,22 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		memberService.fileDelete(memberVO.getId(), session);
 		return "redirect :./memberPage";
+	}
+	
+	@PostMapping("memberIdCheck")
+	public ModelAndView memberIdCheck(MemberVO memberVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.memberIdCheck(memberVO);
+		//null -> 가입이가능 1
+		//null 이아니면 중복 0
+		int result = 0;
+		if (memberVO==null) {
+			result=1;
+		}
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
 	}
 	
 }

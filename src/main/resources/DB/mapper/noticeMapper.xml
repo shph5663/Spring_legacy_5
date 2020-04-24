@@ -63,7 +63,7 @@
 	select N.*,f.*
 	from notice N left join boardfile F
 	on (N.num=F.num)
-	where N.num=#{num} and F.board=1 
+	where N.num=#{num}
   	</select>
   	
   	<select id="boardNum" resultType="Long">

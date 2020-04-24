@@ -1,5 +1,6 @@
 package com.iu.s5.notice;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,7 +75,13 @@ public class NoticeController {
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
 	public ModelAndView boardWrite(NoticeDTO noticeDTO,MultipartFile [] files , ModelAndView mv)throws Exception{
-
+			//HttpServletRequest request 변수 주고
+//		Enumeration<String> er = request.getParameterNames();
+//		
+//		while (er.hasMoreElements()) {
+//			System.out.println(er.nextElement());
+//		}
+		
 		int result = noticeService.boardWrite(noticeDTO, files);
 		if(result>0) {
 			mv.setViewName("redirect:./noticeList");
