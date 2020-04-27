@@ -38,6 +38,15 @@
 		  		</div> 
 				</div>
 				
+				 <div class="form-group" >
+		  	<label for="files">Files:</label>
+		  	<c:forEach items="${dto.boardFileVOs}" var="fileVO">
+			  	<p class="f">${fileVO.oriName}<i id="${fileVO.fileNum}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+		  	
+		  	</c:forEach>
+		  	</div>
+					
+									
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">Submit</button>
@@ -54,6 +63,21 @@
 		  maxHeight: null,             // set maximum height of editor
 		  focus: true                  // set focus to editable area after initializing summernote
 		});
+	
+	$(".fileDelete").click(function() {
+		var s = $(this);
+		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id")}, function(data) {
+			if (data.trim()>0) {
+				  s.parent().remove();
+				  alert("삭제성공")
+
+			}else{
+				alert("삭제실패");
+			};
+
+		});
+	});
+	
 </script>
 </body>
 </html>

@@ -52,9 +52,9 @@
 				</div>	
 				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="age">avatar</label>
+					<label class="control-label col-sm-2" for="age">Avatar</label>
 					<div class="col-sm-10">
-						<input type="file" class="form-control" id="avatar" value="${member.age}" name="avatar">
+						<input type="file" class="form-control" id="avatar" name="avatar">
 					</div>
 				</div>				
 						

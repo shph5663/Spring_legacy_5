@@ -22,5 +22,9 @@ public class BoardFileDAO {
 		return sqlSession.insert(NAMESPACE+".fileInsert", boardFileVO);
 	}
 	
+	
+	public int fileDelete(long fileNum) throws Exception{
+		return sqlSession.delete(NAMESPACE+".fileDelete", fileNum);
+	}
 
 }

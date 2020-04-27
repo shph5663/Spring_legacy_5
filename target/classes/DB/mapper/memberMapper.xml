@@ -73,8 +73,15 @@ Update member set email=#{email},phone=#{phone},age=#{age} where id=#{id}
 </update>
 
 
-<delete parameterType="Long" id="memberDelete">
+<delete parameterType="MemberVO" id="memberDelete">
 delete member where id=#{id} 
+</delete>
+
+<delete id="memberDeletes" parameterType="List">
+	delete member where id in
+	<foreach collection="list" item="id" open="(" close=")" separator=",">
+		#{id}
+	</foreach>
 </delete>
 
 <insert parameterType="MemberVO" id="memberJoin">

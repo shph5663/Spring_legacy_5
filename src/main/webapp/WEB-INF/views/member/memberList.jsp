@@ -32,20 +32,23 @@
 		      </div>
 		    </div>
 		  </form>
-		
+		<div id="result">
 		<table class="table table-hover">
 			<tr>
 				<td>id</td>
 				<td>name</td>
 				<td>phone</td>
 				<td>email</td>		
+				<td><input type="checkbox" id="checkAll">
+				<button id="del" class="btn btn-danger">delete</button></td>
 			</tr>
-			<c:forEach items="${list}" var="vo">
+			<c:forEach items="${list}" var="vo" varStatus="i">
 			<tr>
-				<td>${vo.id}</td>
+				<td id="id${i.index}">${vo.id}</td>
 				<td>${vo.name}</td>
 				<td>${vo.phone}</td>
-				<td>${vo.email}</td>		
+				<td>${vo.email}</td>	
+				<td><input type="checkbox" title="id${i.index}" id="${vo.id}" name="del" class="check"></td>	
 			</tr>
 
 			</c:forEach>
@@ -60,14 +63,85 @@
 			</c:forEach>
 			<c:if test="${pager.totalBlock>pager.curBlock}"><li><a href="./memberList?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 			</c:if>
+					</ul>
 		</div>
-			</ul>
-
+	
+		</div>
 
 	
 		<!--</div>
 			<a href="./${board}Write" class="btn btn-danger">write</a>
 		</div>-->
+<script type="text/javascript">
+//다중체크
+$(function() {
+		
+		$("#result").on("click","#checkAll", function() {
+			$(".check").prop("checked", $(this).prop("checked"));	
+		});
+	
+		$("#result").on("click", ".check", function() {
+			var result=true;
+			$(".check").each(function() {
+				if(!$(this).prop("checked")){
+					result=false;
+				}
+			});
+			
+			$("#checkAll").prop("checked", result);
+		});
+		
+		$("#result").on("click", "#del", function() {
+			var ids = [];//빈 배열 생성
+			$(".check").each(function() {
+				if($(this).prop("checked")){
+					//var id = $(this).attr("title");
+					//alert($("#"+id).text());
+					
+					ids.push($(this).attr("id"));
+					
+				}
+			});
+			
+			console.log(ids);
+			//foreach 끝
+			$.ajax({
+				type:"get",
+				traditional:true,
+				url:"./memberDeletes",
+				data: {
+					ids:ids
+				},
+				success:function(data){
+					$.get("./memberLists", function(data) {
+						$("#result").html(data.trim());
+					});
+				}
+				
+			});
+		});
+		
+		
+		
+});
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 </body>
 </html>

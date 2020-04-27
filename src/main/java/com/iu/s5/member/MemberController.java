@@ -1,5 +1,6 @@
 package com.iu.s5.member;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
@@ -130,5 +131,77 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value= "memberDelete")
+	public ModelAndView memberDelete(ModelAndView mv, HttpSession session) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		int result = memberService.memberDelete(memberVO);
+		if(result>0) {
+			session.invalidate();
+			mv.addObject("result", "Delete Success");
+			mv.addObject("path", "../");
+			mv.setViewName("common/result");
+		}else {
+			mv.addObject("result", "Delete Fail");
+			mv.addObject("path", "../");
+			mv.setViewName("common/result");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("memberDeletes")
+	public ModelAndView memberDeletes(String[] ids) throws Exception{
+//		for (String id : ids) {
+//			MemberVO memberVO = new MemberVO();
+//			memberVO.setId(id);
+//			memberService.memberDelete(memberVO);
+//		}
+		//위 배열을 List로 변환
+		ModelAndView mv = new ModelAndView();
+		List<String> list = Arrays.asList(ids);
+		int result = memberService.memberDeletes(list);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+		
+	}
+	@RequestMapping("memberLists")
+	public ModelAndView memberLists(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<MemberVO> ar = memberService.memberList(pager);
+		mv.addObject("list",ar);
+		mv.addObject("pager",pager);
+		mv.setViewName("member/memberLists");
+		return mv;
+	}
+	
+	@RequestMapping(value= "memberUpdate")
+	public void memberUpdate() {
+		
+	}
+	
+	@RequestMapping(value= "memberUpdate", method = RequestMethod.POST)
+	public ModelAndView memberUpdate(ModelAndView mv, MemberVO memberVO, HttpSession session) throws Exception {
+		String id = ((MemberVO)session.getAttribute("member")).getId();
+		memberVO.setId(id);
+		
+		int result = memberService.memberUpdate(memberVO);
+		
+		if(result>0) {
+			session.setAttribute("member", memberVO);
+			mv.setViewName("redirect:./memberPage");
+		}else {
+			 mv.addObject("result", "Update Fail");
+			 mv.addObject("path", "./memberPage");
+			 mv.setViewName("common/result");
+		}
+		
+		return mv;
+	}
+	
+	
 	
 }

@@ -80,9 +80,22 @@
 $("#id").blur(function() {//여기서 아이디를 조회해서 db로 보낸다
 	var id = $("#id").val();
 
+	//방법 1
+	//$.post("./memberIdCheck",{id:id}, function(data){
+	//	alert(data);
+	//});
 	
-	$.post("./memberIdCheck",{id:id}, function(data){
-				alert(data);
+	//방법2
+	$.ajax({
+		type:"post",  //method 형식
+		url :"./memberIdCheck", //URL주소
+		data : {id:id}, //parameter
+		success : functionata() {
+			alert(r);
+		},
+		error : functionㅇ() {
+			alert("error ")
+		}
 	});
 });
 
