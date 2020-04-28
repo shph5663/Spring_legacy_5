@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +13,9 @@
 <body>
 <c:import url="../tem/header.jsp"></c:import>
 
-<h1>${board} update form</h1>
+<h1>${fn:toUpperCase(board)} update form</h1>
 
-<form action="./${board}Update" method="post">
+<form action="./${board}Update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="num" value="${dto.num}">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">title:</label>
@@ -35,13 +36,19 @@
 					<div class="form-group" >
 		    			<label for="contents"></label>
 		    			<textarea rows="5" cols="" class="form-control" id="contents" name="contents">${dto.contents}</textarea>
-		  		</div> 
+		  		</div>
+		  		
+		  		<input type= "button" id="add" class="btn btn-info" value="addfile">
+				<div id="file">
+				
+				</div>
+		  		 
 				</div>
 				
 				 <div class="form-group" >
-		  	<label for="files">Files:</label>
-		  	<c:forEach items="${dto.boardFileVOs}" var="fileVO">
-			  	<p class="f">${fileVO.oriName}<i id="${fileVO.fileNum}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+		 		 	<label for="files">Files:</label>
+		  			<c:forEach items="${dto.boardFileVOs}" var="fileVO">
+			  	<p class="f">${fileVO.oriName}<i id="${fileVO.fileNum}" title="${fileVO.board}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
 		  	
 		  	</c:forEach>
 		  	</div>
@@ -54,7 +61,7 @@
 				</div>
 
 </form>
-
+<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 <script type="text/javascript">
 	//$(선택자).action();
 	$("#contents").summernote({
@@ -64,15 +71,29 @@
 		  focus: true                  // set focus to editable area after initializing summernote
 		});
 	
+	var size = ${size};
+	
+	size=${dto.boardFileVOs.size()};
+	
+	size = ${fn:length(dto.boardFileVOs)};
+	
+	cli = cli+size;
+
+	
 	$(".fileDelete").click(function() {
+		
+		var check = confirm("정말 지우나요");
+		
 		var s = $(this);
-		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id")}, function(data) {
+		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id"), board:$(this).attr("title")}, function(data) {
 			if (data.trim()>0) {
-				  s.parent().remove();
+				  s.parent().remove();	
+				  count--;
 				  alert("삭제성공")
 
 			}else{
 				alert("삭제실패");
+			
 			};
 
 		});

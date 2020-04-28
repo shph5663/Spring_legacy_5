@@ -13,8 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from boardFile where fileNum=#{fileNum} and board=#{board}
 	</select>
 	
+	<select id="fileList" parameterType="BoardFileVO" resultType="BoardFileVO">
+		select * from boardFile where num = #{num}
+	</select>
+	
 	<delete id="fileDelete" parameterType="BoardFileVO">
 		delete boardFile where fileNum=#{fileNum}
+	</delete>
+	
+	<delete id="fileDeleteAll" parameterType="BoardFileVO">
+		delete boardFile where num=#{num}
 	</delete>
 
 

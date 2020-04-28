@@ -48,13 +48,19 @@ public class NoticeController {
 	public String boardUpdate(long num, Model model)throws Exception{
 		 BoardDTO boardDTO = noticeService.boardSelect(num);
 		 model.addAttribute("dto", boardDTO);
+		 
+		 NoticeDTO noticeDTO = (NoticeDTO)boardDTO;
+		 model.addAttribute("size", noticeDTO.getBoardFileVOs().size());
+		 
 		return "board/boardUpdate";
 	}
 	
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
-	public String boardUpdate(NoticeDTO noticeDTO)throws Exception{
-		 
-		int result = noticeService.boardUpdate(noticeDTO);
+	public String boardUpdate(NoticeDTO noticeDTO, MultipartFile [] files)throws Exception{
+		 for (MultipartFile multipartFile:files) {
+			System.out.println(multipartFile.getOriginalFilename());
+		}
+		int result = noticeService.boardUpdate(noticeDTO, files);
 		String path="";
 		
 		if(result>0) {

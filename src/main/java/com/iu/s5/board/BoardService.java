@@ -21,6 +21,8 @@ public interface BoardService {
 		public int boardDelete(long num) throws Exception;
 		
 		//update
-		public int boardUpdate(BoardDTO boardDTO) throws Exception;
+		public int boardUpdate(BoardDTO boardDTO, MultipartFile [] files) throws Exception;
+
+		int boardDelete(long num, MultipartFile[] files) throws Exception;
 
 }

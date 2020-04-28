@@ -52,7 +52,21 @@
 
 </form>
 
-<script type="text/javascript" src="../resources/js/boardForm.js">
+<!--  <script type="text/javascript" src="../resources/js/boardForm.js">-->
+
+<script type="text/javascript">
+$("#contents").summernote({
+	height: 300,
+	callbacks:{
+		onImageUpload:function(file){
+			console.log("upload");
+		}
+	}
+});
+
+</script>
+
+
 
 
 </script>

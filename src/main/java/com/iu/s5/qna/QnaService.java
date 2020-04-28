@@ -50,7 +50,7 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int boardWrite(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
-		String path = servletContext.getRealPath("/resource/uploadNotice");
+		String path = servletContext.getRealPath("/resource/uploadQna");
 		//1. 시퀀스번호받기
 		boardDTO.setNum(qnaDAO.boardNum());
 		//2. qna 테이블 insert

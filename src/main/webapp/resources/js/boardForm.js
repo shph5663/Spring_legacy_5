@@ -5,7 +5,7 @@
 $("#btn").click(function() {
 	//title, contents 데이터 유무 검증
 	var title = $("#title").val();
-	var contents = $("#contents").summernote('code');
+	//var contents = $("#contents").summernote('code');
 	
 	var ch3 = true;
 	$(".files").each(function() {
@@ -15,7 +15,7 @@ $("#btn").click(function() {
 	});
 	
 	var ch1 = title !="";
-	var ch2 = $("#contents").summernote('isEmpty');
+	//var ch2 = $("#contents").summernote('isEmpty');
 	
 	if(ch1 && !ch2 && ch3){
 		//form 전송(submit event 강제 발생)
@@ -36,6 +36,10 @@ $("#btn").click(function() {
 });
 var cli = 0;
 
+function setCli(c) {
+	cli = cli+c;
+}
+
 $("#file").on("click", ".remove",function() {
 	 $("#files").remove(); 
 	 //or $("this").parent.remove(); 
@@ -54,8 +58,14 @@ $("#file").on("click", ".remove",function() {
 	});
 
 	//$(선택자).action();
-	$("#contents").summernote({
+	/*$("#contents").summernote({
 		  height: 300,                 // set editor height
 		  minHeight: null,             // set minimum height of editor
-		  maxHeight: null,             // set maximum height of editor                 // set focus to editable area after initializing summernote
-		});
+		  maxHeight: null, 
+		  focus: true,
+		  callbacks:{
+			  onImageUpload: function(file) {
+				console.log("upload")
+			}
+		  }// set maximum height of editor                 // set focus to editable area after initializing summernote
+		});*/
